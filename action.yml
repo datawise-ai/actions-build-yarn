@@ -1,13 +1,13 @@
 name: "datawise-build-yarn"
 description: "datawise build yarn"
-inputs: 
+inputs:
   NODE_VERSION:
     required: true
 runs:
   using: "composite"
   steps:
 
-    - name: Use Node.js 
+    - name: Use Node.js
       uses: actions/setup-node@v2
       with:
         node-version: ${{ inputs.NODE_VERSION }}
@@ -23,16 +23,16 @@ runs:
         key: ${{ runner.os }}-nextjs2-${{ hashFiles('**/package-lock.json','**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
         restore-keys: |
           ${{ runner.os }}-nextjs2-${{ hashFiles('**/package-lock.json','**/yarn.lock') }}-
-    
+
     - name: yarn set cache
-      shell: bash 
+      shell: bash
       run: yarn config set cache-folder .yarn
 
     - name: yarn install
-      shell: bash 
-      run: yarn install
+      shell: bash
+      run: yarn install --frozen-lockfile
+
 
     - name: yarn build
-      shell: bash 
+      shell: bash
       run: yarn build
-
