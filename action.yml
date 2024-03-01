@@ -26,7 +26,7 @@ runs:
 
     - name: yarn set cache
       shell: bash
-      run: yarn config set cache-folder .yarn
+      run: yarn config set cacheFolder .yarn
 
     - name: yarn install
       shell: bash
